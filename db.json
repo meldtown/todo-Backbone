@@ -1,33 +1,33 @@
 {
   "todos": [
     {
-      "text": "Learn Backbone",
+      "text": "Backbone",
       "completed": true,
       "id": 1
     },
     {
-      "text": "Learn Chaplin.js",
+      "text": "Chaplin",
       "completed": false,
       "id": 2
     },
     {
-      "text": "Learn Marionette.js",
+      "text": "Marionette",
       "completed": true,
       "id": 3
     },
     {
-      "text": "Learn Broccoli",
+      "text": "Redux",
       "completed": false,
       "id": 4
     },
     {
-      "text": "Learn Brunch",
+      "text": "Vuex",
       "completed": false,
       "id": 5
     },
     {
-      "text": "Learn Underscore.js",
-      "completed": false,
+      "text": "Mustache",
+      "completed": true,
       "id": 6
     }
   ]

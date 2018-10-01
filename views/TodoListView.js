@@ -6,25 +6,59 @@ app.TodoListView = Backbone.View.extend({
   events: {
     'submit form': 'addTodo',
     'input .added-todo': 'validateAddedTodo',
-    'change select#filter': 'updateFilter'
+    'change select#filter': 'updateFilter',
+    'change select#sort': 'updateSortOption',
   },
   initialize: function () {
-    this.todos = this.filteredTodos = new app.TodoList();
+    this.todos = this.filteredTodos = this.filteredAndSortedTodos = new app.TodoList();
     this.listenTo(this.todos, 'add', this.renderTodo);
     this.listenTo(this.todos, 'reset update', this.render);
     this.listenTo(this.todos, 'update change:completed', this.updateFilteredTodos);
     this.todos.fetch({reset: true});
     this.filters = ['All', 'Completed', 'Active'];
+    this.sortOptions = ['None', 'Asc', 'Desc'];
     this.currentFilter = 'All';
+    this.currentSortOption = 'None';
 
     this.render();
   },
-  updateFilter: function(e) {
+  setSelectValues: function() {
+    this.$('select#filter').val(this.currentFilter);
+    this.$('select#sort').val(this.currentSortOption);
+  },
+  updateSortOption: function (e) {
+    const sortOption = $(e.target).val();
+    this.currentSortOption = sortOption;
+    this.updateFilteredAndSortedTodos();
+  },
+  updateFilteredAndSortedTodos: function () {
+    const filteredTodos = this.filteredTodos.models || this.filteredTodos;
+    const todos = [...filteredTodos];
+    const sortOption = this.currentSortOption;
+    const sortedByAscTodos = todos.sort((a, b) => {
+      const prev = a.get('text').toLowerCase();
+      const next = b.get('text').toLowerCase();
+      return next > prev ? -1 : 1;
+    });
+    switch (sortOption) {
+      case 'Asc':
+        this.filteredAndSortedTodos = sortedByAscTodos;
+        break;
+      case 'Desc':
+        this.filteredAndSortedTodos = sortedByAscTodos.reverse();
+        break;
+      default:
+        this.filteredAndSortedTodos = filteredTodos;
+    }
+    this.render();
+    this.setSelectValues();
+  },
+  updateFilter: function (e) {
     const filter = $(e.target).val();
     this.currentFilter = filter;
     this.updateFilteredTodos();
   },
-  updateFilteredTodos: function() {
+  updateFilteredTodos: function () {
     const todos = this.todos.models;
     switch (this.currentFilter) {
       case 'Completed':
@@ -36,8 +70,7 @@ app.TodoListView = Backbone.View.extend({
       default:
         this.filteredTodos = todos;
     }
-    this.render();
-    this.$('select#filter').val(this.currentFilter);
+    this.updateFilteredAndSortedTodos();
   },
   addTodo: function (e) {
     e.preventDefault();
@@ -63,15 +96,18 @@ app.TodoListView = Backbone.View.extend({
       todos,
       totalCount: todos.length,
       filters: this.filters,
-      currentFilter: this.currentFilter
+      sortOptions: this.sortOptions,
+      currentFilter: this.currentFilter,
+      currentSortOption: this.currentSortOption
     }
     const tpl = this.template(data)
     this.$el.html(tpl);
-    this.filteredTodos.forEach(function (todo) {
+    this.filteredAndSortedTodos.forEach(function (todo) {
       this.renderTodo(todo)
     }, this);
     const elem = $('.add-todo');
     elem.attr('disabled', 'true');
+    this.setSelectValues();
   },
   renderTodo: function (model) {
     const todoView = new app.TodoView({model});

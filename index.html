@@ -24,7 +24,11 @@
       <% })%>
     </select>
     <label for="sort">Sort TODOS</label>
-    <select name="sort" id="sort"></select>
+    <select name="sort" id="sort">
+      <% sortOptions.forEach(sortOption => { %>
+       <option selected="<%= sortOption === currentSortOption%>" value="<%=sortOption %>"><%=sortOption %></option>
+      <% })%>
+    </select>
   <% } %>
   <% if (totalCount) {%>
     <ul class="todo-list"></ul>
