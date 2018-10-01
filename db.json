@@ -19,6 +19,11 @@
       "id": 5,
       "completed": true,
       "text": "Earn money"
+    },
+    {
+      "text": "Hug the wifes",
+      "completed": true,
+      "id": 6
     }
   ]
 }
