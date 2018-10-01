@@ -10,10 +10,19 @@
 </head>
 <body>
 
-<div id="todoList" type="text/template">
-  <h1>Todo list</h1>
-  <ul></ul>
+<div id="root" type="text/template">
+
 </div>
+
+<script id="todo-list" type="text/html">
+  <h1>Todo list</h1>
+  <% if (totalCount) {%>
+    <ul class="todo-list"></ul>
+    <p>You have  <mark><%=todos.length %></mark> TODOS</p>
+  <%} else {%>
+    <p>You don't have any todos</p>
+  <%} %>
+</script>
 
 <script id="todo" type="text/template">
   <div class="flex">

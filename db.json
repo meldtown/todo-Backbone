@@ -6,9 +6,9 @@
       "completed": true
     },
     {
-      "id": 3,
       "text": "Check emails",
-      "completed": false
+      "completed": false,
+      "id": 3
     },
     {
       "text": "Learn Javascript",
