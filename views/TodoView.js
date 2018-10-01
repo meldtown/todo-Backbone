@@ -9,6 +9,7 @@ app.TodoView = Backbone.View.extend({
     'click .edit': 'edit',
     'click .cancel': 'cancel',
     'click .save': 'save',
+    'click .delete': 'remove',
   },
   template: _.template($('#todo').html()),
   initialize: function () {
@@ -47,6 +48,9 @@ app.TodoView = Backbone.View.extend({
         },
         context: this
       });
+  },
+  remove: function() {
+    this.model.destroy({wait: true})
   },
   edit: function () {
     this.isEdit = true;

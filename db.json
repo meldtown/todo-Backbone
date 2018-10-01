@@ -1,29 +1,9 @@
 {
   "todos": [
     {
-      "id": 1,
-      "text": "Mow the loan",
-      "completed": true
-    },
-    {
-      "text": "Check the emails",
+      "text": "Learn Backbone",
       "completed": false,
-      "id": 3
-    },
-    {
-      "text": "Learn Javascript",
-      "completed": true,
-      "id": 4
-    },
-    {
-      "id": 5,
-      "completed": true,
-      "text": "Earn money"
-    },
-    {
-      "text": "Hug the wifes",
-      "completed": true,
-      "id": 6
+      "id": 1
     }
   ]
 }
