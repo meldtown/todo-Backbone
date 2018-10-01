@@ -7,7 +7,8 @@ app.TodoView = Backbone.View.extend({
     'change input[type=checkbox]': 'toggle',
     'input input[type=text]': 'updateText',
     'click .edit': 'edit',
-    'click .cancel': 'cancel'
+    'click .cancel': 'cancel',
+    'click .save': 'save',
   },
   template: _.template($('#todo').html()),
   initialize: function () {
@@ -22,7 +23,7 @@ app.TodoView = Backbone.View.extend({
     this.$el.html(this.template(data));
     return this;
   },
-  updateText: function() {
+  updateText: function () {
     const input = $('input[type=text]');
     const text = input.val().trim();
     const disabled = !text || text === this.model.get('text').trim();
@@ -33,6 +34,19 @@ app.TodoView = Backbone.View.extend({
     const completed = !this.model.get('completed');
     const payload = {...data, completed}
     this.model.save(payload, {wait: true});
+  },
+  save: function () {
+    const input = $('input[type=text]');
+    const text = input.val().trim();
+    const payload = {...this.model.attributes, text};
+    this.model.save(payload,
+      {
+        success: function () {
+          input.val('');
+          this.cancel();
+        },
+        context: this
+      });
   },
   edit: function () {
     this.isEdit = true;

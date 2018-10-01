@@ -6,13 +6,13 @@
       "completed": true
     },
     {
-      "text": "Check emails",
+      "text": "Check the emails",
       "completed": false,
       "id": 3
     },
     {
       "text": "Learn Javascript",
-      "completed": false,
+      "completed": true,
       "id": 4
     },
     {
