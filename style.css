@@ -5,13 +5,13 @@
 
 
 body {
+    max-width: 300px;
     padding: 10px;
     font-family: Monaco;
     font-size: 1.2em;
 }
 
 ul {
-    max-width: 300px;
     list-style: none;
     margin: 20px;
 }

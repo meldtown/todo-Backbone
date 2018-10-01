@@ -1,13 +1,8 @@
 {
   "todos": [
     {
-      "text": "Backbone",
-      "completed": true,
-      "id": 1
-    },
-    {
       "text": "Chaplin",
-      "completed": false,
+      "completed": true,
       "id": 2
     },
     {
@@ -16,19 +11,14 @@
       "id": 3
     },
     {
-      "text": "Redux",
-      "completed": false,
-      "id": 4
-    },
-    {
-      "text": "Vuex",
-      "completed": false,
-      "id": 5
-    },
-    {
-      "text": "Mustache",
+      "text": "Handlebars",
       "completed": true,
       "id": 6
+    },
+    {
+      "text": "Backbone",
+      "completed": false,
+      "id": 7
     }
   ]
 }
