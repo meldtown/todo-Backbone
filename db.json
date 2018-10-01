@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "text": "Mow the loan",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "text": "Check emails",
+      "completed": false
+    },
+    {
+      "text": "Learn Javascript",
+      "completed": false,
+      "id": 4
+    },
+    {
+      "id": 5,
+      "completed": true,
+      "text": "Earn money"
+    }
+  ]
+}

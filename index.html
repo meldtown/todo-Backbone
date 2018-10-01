@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Backbone todos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="todoList" type="text/template">
+  <h1>Todo list</h1>
+  <ul></ul>
+</div>
+
+<script id="todo" type="text/template">
+  <div class="flex">
+    <p><%= text %></p>
+    <input type="checkbox" <%=completed ? 'checked' : '' %>/>
+  </div>
+</script>
+
+<!-- Vendor -->
+<script src="vendor/axios/dist/axios.min.js"></script>
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script src="vendor/underscore/underscore-min.js"></script>
+<script src="vendor/backbone/backbone-min.js"></script>
+
+<!-- App -->
+<script> let app</script>
+<script src="models/todo.js"></script>
+<script src="collections/todoList.js"></script>
+<script src="views/TodoView.js"></script>
+<script src="views/TodoListView.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
