@@ -25,10 +25,22 @@
 </script>
 
 <script id="todo" type="text/template">
-  <div class="flex">
-    <p><%= text %></p>
-    <input type="checkbox" <%=completed ? 'checked' : '' %>/>
-  </div>
+  <% if (isEdit) {%>
+    <input type="text" value="<%=text %>"/>
+    <div>
+      <button class="save">Save</button>
+      <button class="cancel">Cancel</button>
+    </div>
+  <% } else {%>
+    <div class="flex">
+      <p><%= text %></p>
+      <input type="checkbox" <%=completed ? 'checked' : '' %>/>
+    </div>
+    <div>
+      <button class="edit">Edit</button>
+      <button class="delete">Delete</button>
+    </div>
+  <% }%>
 </script>
 
 <!-- Vendor -->
