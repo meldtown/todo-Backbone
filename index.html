@@ -17,6 +17,16 @@
 <script id="todo-list" type="text/html">
   <h1>Todo list</h1>
   <% if (totalCount) {%>
+    <label for="filter">Filter TODOS</label>
+    <select name="filter" id="filter" value="<%=currentFilter %>">
+      <% filters.forEach(filter => { %>
+        <option selected="<%= filter === currentFilter%>" value="<%=filter %>"><%=filter %></option>
+      <% })%>
+    </select>
+    <label for="sort">Sort TODOS</label>
+    <select name="sort" id="sort"></select>
+  <% } %>
+  <% if (totalCount) {%>
     <ul class="todo-list"></ul>
     <p>You have  <mark><%=todos.length %></mark> TODOS</p>
   <%} else {%>
@@ -51,8 +61,8 @@
 
 <!-- Vendor -->
 <script src="vendor/axios/dist/axios.min.js"></script>
-<script src="vendor/jquery/dist/jquery.min.js"></script>
-<script src="vendor/underscore/underscore-min.js"></script>
+<script src="vendor/jquery/dist/jquery.js"></script>
+<script src="vendor/underscore/underscore.js"></script>
 <script src="vendor/backbone/backbone-min.js"></script>
 
 <!-- App -->

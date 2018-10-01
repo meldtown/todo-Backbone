@@ -5,14 +5,39 @@ app.TodoListView = Backbone.View.extend({
   template: _.template($('#todo-list').html()),
   events: {
     'submit form': 'addTodo',
-    'input .added-todo': 'validateAddedTodo'
+    'input .added-todo': 'validateAddedTodo',
+    'change select#filter': 'updateFilter'
   },
   initialize: function () {
-    this.todos = new app.TodoList();
+    this.todos = this.filteredTodos = new app.TodoList();
     this.listenTo(this.todos, 'add', this.renderTodo);
     this.listenTo(this.todos, 'reset update', this.render);
+    this.listenTo(this.todos, 'update change:completed', this.updateFilteredTodos);
     this.todos.fetch({reset: true});
+    this.filters = ['All', 'Completed', 'Active'];
+    this.currentFilter = 'All';
+
     this.render();
+  },
+  updateFilter: function(e) {
+    const filter = $(e.target).val();
+    this.currentFilter = filter;
+    this.updateFilteredTodos();
+  },
+  updateFilteredTodos: function() {
+    const todos = this.todos.models;
+    switch (this.currentFilter) {
+      case 'Completed':
+        this.filteredTodos = todos.filter(todo => todo.get('completed'));
+        break;
+      case 'Active':
+        this.filteredTodos = todos.filter(todo => !todo.get('completed'));
+        break;
+      default:
+        this.filteredTodos = todos;
+    }
+    this.render();
+    this.$('select#filter').val(this.currentFilter);
   },
   addTodo: function (e) {
     e.preventDefault();
@@ -36,11 +61,13 @@ app.TodoListView = Backbone.View.extend({
     const todos = this.todos.models;
     const data = {
       todos,
-      totalCount: todos.length
-
+      totalCount: todos.length,
+      filters: this.filters,
+      currentFilter: this.currentFilter
     }
-    this.$el.html(this.template(data));
-    this.todos.each(function (todo) {
+    const tpl = this.template(data)
+    this.$el.html(tpl);
+    this.filteredTodos.forEach(function (todo) {
       this.renderTodo(todo)
     }, this);
     const elem = $('.add-todo');

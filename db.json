@@ -2,8 +2,33 @@
   "todos": [
     {
       "text": "Learn Backbone",
-      "completed": false,
+      "completed": true,
       "id": 1
+    },
+    {
+      "text": "Learn Chaplin.js",
+      "completed": false,
+      "id": 2
+    },
+    {
+      "text": "Learn Marionette.js",
+      "completed": true,
+      "id": 3
+    },
+    {
+      "text": "Learn Broccoli",
+      "completed": false,
+      "id": 4
+    },
+    {
+      "text": "Learn Brunch",
+      "completed": false,
+      "id": 5
+    },
+    {
+      "text": "Learn Underscore.js",
+      "completed": false,
+      "id": 6
     }
   ]
 }
